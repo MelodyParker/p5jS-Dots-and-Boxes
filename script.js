@@ -1,6 +1,6 @@
 // logic
-let horizDimension = 9;
-let vertDimension = 9;
+let horizDimension = 3;
+let vertDimension = 3;
 
 // representations (0=empty, 1=claimed by player 1, 2=claimed by player 2, etc.)
 let boxGrid = createBoxGrid(horizDimension, vertDimension); 
