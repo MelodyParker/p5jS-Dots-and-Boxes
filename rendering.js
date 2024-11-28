@@ -61,7 +61,7 @@ function drawHoveredLine(x, y) {
 
   if (intersections === 2) {
     let [lineX, lineY] = intersectingVertLine(x, y);
-    if (vertLineGrid[lineY][lineX] !== 0) return;
+    if ((lineX > horizDimension + 1 || lineY > vertDimension) || vertLineGrid[lineY][lineX] !== 0) return;
 
     [startPosX, startPosY] = dotPos(lineX, lineY);
     [endPosX, endPosY] = dotPos(lineX, lineY + 1);

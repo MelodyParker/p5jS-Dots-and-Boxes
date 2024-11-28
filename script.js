@@ -1,6 +1,6 @@
 // logic
-let horizDimension = 3;
-let vertDimension = 3;
+let horizDimension = 5;
+let vertDimension = 5;
 
 // representations (0=empty, 1=claimed by player 1, 2=claimed by player 2, etc.)
 let boxGrid = createBoxGrid(horizDimension, vertDimension); 
@@ -12,7 +12,7 @@ let horizLineGrid = createHorizLineGrid(horizDimension, vertDimension);
 // represents the horizontal lines in the grid
 
 // players
-let numPlayers = 2;
+let numPlayers = 3;
 let currentTurn = 1;
 
 
@@ -37,7 +37,7 @@ let lineThickness = 7;
 
 // player colors
 let playerLineColors =  ["#999", "#FF007F", "#31AFD4", "#FFFD82"];
-let playerBoxColors =   [canvasBackgroundColor, "#FF85C2", "#CCEBF5", "#DDFEC2"]
+let playerBoxColors =   [canvasBackgroundColor, "#FF85C2", "#CCEBF5", "#DDDD00"]
 let playerHoverColors = ["#222", "#CC0066", "#2698BA", "#FFFC33"]
 // indexed by player (0 is no one there, 1 is player 1 there, 2 is player 2 there, etc.)
 
