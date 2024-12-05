@@ -40,7 +40,7 @@ function createHorizLineGrid(horizDimension, vertDimension) {
 
 function intersectsWithLine(x, y) {
   
-  if (x >= width || y >= height || x < 0 || y < 0) return 0;
+  if (x >= (outerRadius + scalingFactor * horizDimension + lineErrorMargin) || y >= (outerRadius + scalingFactor * vertDimension + lineErrorMargin) || x < outerRadius || y < outerRadius) return 0;
 
   // checks vertical line intersections
   let intersectsWithVertLine = Math.abs((x - outerRadius) % scalingFactor) <= lineErrorMargin;
@@ -55,12 +55,12 @@ function intersectsWithLine(x, y) {
 
 
 function intersectingVertLine(x, y) {
-  return [Math.round((x - outerRadius) / scalingFactor), Math.floor((y - outerRadius) / scalingFactor)];
+  return [Math.round((x - outerRadius) / scalingFactor), Math.round((y - outerRadius) / scalingFactor - 0.5)];
   // [x, y]
 }
 
 function intersectingHorizLine(x, y) {
-  return [Math.floor((x - outerRadius) / scalingFactor), Math.round((y - outerRadius) / scalingFactor)];
+  return [Math.round((x - outerRadius) / scalingFactor - 0.5), Math.round((y - outerRadius) / scalingFactor)];
   // [x, y]
 }
 
@@ -125,4 +125,25 @@ function newCompleteBox() {
     }
   }
   return 0;
+}
+
+
+function gameIsOver(boxGrid) {
+  for (let boxRow of boxGrid) {
+    if (Math.min(...boxRow) === 0) return false;
+  }
+  return true;
+}
+
+function getWinner(boxGrid) {
+  let scores = {};
+  for (let i=0; i<numPlayers+1; i++) {
+    scores[i] = 0;
+  }
+  for (let boxRow of boxGrid) {
+    for (let box of boxRow) {
+      scores[box] ++;
+    }
+  }
+  return (Object.values(scores)).indexOf(Math.max(...(Object.values(scores))));
 }

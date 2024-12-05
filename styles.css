@@ -1,15 +1,44 @@
 html {
   height: 100%; 
 }
-body {
+div#all-container, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ccc;
-  height: 100%; 
+  place-items: center;
+  background-color: #777;
+  /* height: 100%;  */
   overflow: hidden;
 }
+
+body {
+  height: 100%;
+}
+
+div#all-container.post-win {
+  display: grid;
+  place-items: center;
+  grid-auto-rows: max-content;
+}
+
 canvas {
   /* border: 15px solid #111; */
   border-radius: 15px;
+
+
+}
+
+
+#winner-container {
+  /* display: none; */
+}
+
+
+label {
+  color: #ddd;
+}
+
+input {
+  background-color: #333;
+  color: #ddd;
 }

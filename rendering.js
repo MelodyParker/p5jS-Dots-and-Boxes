@@ -54,27 +54,30 @@ function drawHoveredLine(x, y) {
   strokeWeight(lineThickness);
   stroke(playerHoverColors[currentTurn]);
 
-
+  
   let intersections = intersectsWithLine(x, y);
-
   if (intersections === 0 || intersections === 3) return
+  try {
+    if (intersections === 2) {
+      let [lineX, lineY] = intersectingVertLine(x, y);
+      if ((lineX > horizDimension + 1 || lineY > vertDimension) || vertLineGrid[lineY][lineX] !== 0) return;
 
-  if (intersections === 2) {
-    let [lineX, lineY] = intersectingVertLine(x, y);
-    if ((lineX > horizDimension + 1 || lineY > vertDimension) || vertLineGrid[lineY][lineX] !== 0) return;
+      [startPosX, startPosY] = dotPos(lineX, lineY);
+      [endPosX, endPosY] = dotPos(lineX, lineY + 1);
+    }
+    if (intersections === 1) {
+      let [lineX, lineY] = intersectingHorizLine(x, y);
+      if (horizLineGrid[lineY][lineX] !== 0) return;
+      [startPosX, startPosY] = dotPos(lineX, lineY);
+      [endPosX, endPosY] = dotPos(lineX + 1, lineY);
+    }
 
-    [startPosX, startPosY] = dotPos(lineX, lineY);
-    [endPosX, endPosY] = dotPos(lineX, lineY + 1);
+    line(startPosX, startPosY, endPosX, endPosY);
+    cursor(HAND)
+  } catch(e) {
+    console.error(e);
+    console.debug(intersections, x, y)
   }
-  if (intersections === 1) {
-    let [lineX, lineY] = intersectingHorizLine(x, y);
-    if (horizLineGrid[lineY][lineX] !== 0) return;
-    [startPosX, startPosY] = dotPos(lineX, lineY);
-    [endPosX, endPosY] = dotPos(lineX + 1, lineY);
-  }
-
-  line(startPosX, startPosY, endPosX, endPosY);
-  cursor(HAND)
   pop()
 }
 

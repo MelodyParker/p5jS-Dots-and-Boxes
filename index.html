@@ -12,6 +12,25 @@
 
 </head>
 <body>
-  <div id="canvas-holder"></div>
+  <div id="all-container">
+    <form action="" id="start-game-form">
+      <div class="form-input">
+        <label for="num-players"># players:</label>
+        <input type="number" min="1" max="4" step="1" id="num-players" name="num-players" value="2">
+      </div>
+      <div class="form-input">
+        <label for="x-dim">Board dimensions:</label>
+      </div>
+      <div class="form-input">
+        <input id="x-dim" name="x-dim" type="number" step="1" value="3">
+        X
+        <input id="y-dim" name="y-dim" type="number" step="1" value="3">
+      </div>
+      <button type="submit">Start Game</button>
+    </form>
+    <div id="canvas-holder"></div>
+    <div id="winner-container">
+    </div>
+  </div>
 </body>
 </html>
